@@ -1,11 +1,9 @@
-@if ($errors->any())
-<p>
-    <u>{{ $errors->first() }}</u>
-</p>
-@endif
-
-<form method="post" action="login">
+<form method="post" action="register">
     @csrf
+    <div>
+        <label for="name">Name</label>
+        <input name="name" id="name" type="text" />
+    </div>
     <div>
         <label for="email">Email</label>
         <input name="email" id="email" type="email" />
@@ -14,8 +12,5 @@
         <label for="password">Password</label>
         <input name="password" id="password" type="password" />
     </div>
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
 </form>
-<p>
-    Not a member? <a href="register">Sign up</a>
-</p>
