@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use illuminate\Support\Facades\DB;
 
+
 class RandomController extends Controller
 {
     /**
@@ -16,19 +17,34 @@ class RandomController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $continent = $request->get('continent');
         // dd($request->get('continent'));
         // $continent =  $request->get('continent');
         //Select id where continent = continent
         //Select all countries where continent-id = id
         //random country return
 
+        $countryID = DB::table('continents')
+            ->SELECT('id')
+            ->WHERE('continent', $continent)
+            ->get();
 
-        $user = Auth::user();
+        $random = DB::table('countries')
+            ->SELECT("*")
+            ->WHERE('id', "=", $countryID)
+            ->random()
+            ->get();
 
-        $countries = DB::table('countries')->get('country');
         return view('dashboard', [
-            'user' => $user,
-            'countries' => $countries,
+            'randomCountry' => $random,
         ]);
+
+        // $user = Auth::user();
+
+        // $countries = DB::table('countries')->get('country');
+        // return view('dashboard', [
+        //     'user' => $user,
+        //     'countries' => $countries,
+        // ]);
     }
 }

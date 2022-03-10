@@ -28,22 +28,18 @@ class RegisterTest extends TestCase
     }
     public function test_register_user()
     {
+        $user = new User();
+        $user->name = 'register';
+        $user->email = 'test@test.com';
+        $user->password = '123';
+        $user->save();
 
-        $request = new User();
-
-        $request->name = 'tester';
-        $request->email = 'test@test.com';
-        $request->password = Hash::make('123');
-        $request->save();
-
-        $response = $this
-            ->actingAs($request)
+        $response = $this->followingRedirects()
             ->post('register', [
-                'name' => 'tester',
-                'email' => 'test@test.com',
-                'password' => '123'
+                'name' => 'register',
+                'email' => 'register@user.com',
+                'password' => '123',
             ]);
         $response->assertStatus(200);
-        $response->assertSeeText('Whoops! Please try to login again.');
     }
 }

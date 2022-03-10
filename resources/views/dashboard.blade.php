@@ -17,6 +17,7 @@
     <button>selcect</button>
 </form>
 
+
 <p>
-    Hello, {{$user->id}}.<br><br> Would you like to <a href="logout">logout?</a>
+    Hello, {{$user->name}}.<br><br> Would you like to <a href="logout">logout?</a>
 </p>
