@@ -29,17 +29,18 @@ class RegisterTest extends TestCase
     public function test_register_user()
     {
         $user = new User();
-        $user->name = 'register';
-        $user->email = 'test@test.com';
-        $user->password = '123';
-        $user->save();
 
-        $response = $this->followingRedirects()
+        $user->name = 'register';
+        $user->email = 'register@user.com';
+        $user->passowrd = '123';
+
+        $register = $this
+            ->followingRedirects()
             ->post('register', [
-                'name' => 'register',
-                'email' => 'register@user.com',
-                'password' => '123',
+                'name' => "$user->name",
+                'email' => "$user->email",
+                'password' => "$user->password",
             ]);
-        $response->assertStatus(200);
+        $register->assertSuccessful();
     }
 }
