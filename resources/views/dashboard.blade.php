@@ -1,8 +1,4 @@
-@if ($errors->any())
-<p>
-    <u>{{$errors->first()}}</u>
-</p>
-@endif
+@include('error')
 
 <!-- <form method="get" action="random">
     @csrf
@@ -14,7 +10,6 @@
     </select>
     <button>selcect</button>
 </form> -->
-
 @foreach($continents as $key => $value)
 <div>
     <a href="/random/{{$value->continent}}">{{$value->continent}}
@@ -23,8 +18,16 @@
 
 <br>
 @if(isset($country))
+
+<!-- {{ method_field('PUT') }} -->
 {{$continent->continent}}--
 <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
+<form action="check" method="post">
+    @csrf
+    <input type="checkbox" class='form' value="{{$country}}" name="country" />
+
+    <button>send</button>
+</form>
 @endif
 
 <!-- add favourite / travel -->
