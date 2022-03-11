@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             new Continent(['continent' => 'Europe']),
             new Continent(['continent' => 'North America']),
             new Continent(['continent' => 'South America']),
-            new Continent(['continent' => 'Oceania/Australia']),
+            new Continent(['continent' => 'Oceania']),
         ];
 
         foreach ($continents as $continent) {
@@ -140,23 +140,23 @@ class DatabaseSeeder extends Seeder
             ]),
             new Country([
                 'country' => 'Australia',
-                'continent_id' => 5
+                'continent_id' => 6
             ]),
             new Country([
                 'country' => 'Papua New Guinea',
-                'continent_id' => 5
+                'continent_id' => 6
             ]),
             new Country([
                 'country' => 'New Zealand',
-                'continent_id' => 5
+                'continent_id' => 6
             ]),
             new Country([
                 'country' => 'Fiji',
-                'continent_id' => 5
+                'continent_id' => 6
             ]),
             new Country([
                 'country' => 'Solomon Islands',
-                'continent_id' => 5
+                'continent_id' => 6
             ]),
         ];
 
@@ -165,3 +165,5 @@ class DatabaseSeeder extends Seeder
         }
     }
 }
+$user = new User(['name' => 'Jennifer', 'email' => 'jenn@jenn.se', 'password' => Hash::make('123')]);
+$user->save();
