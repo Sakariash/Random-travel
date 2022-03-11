@@ -17,7 +17,6 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         // $continents = DB::table('continents')->get('continent');
 
         // foreach ($continents as $key => $value) {

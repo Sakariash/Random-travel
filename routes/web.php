@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
@@ -29,6 +30,8 @@ Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
 Route::get('random/{continent:continent}', RandomController::class);
 
+
+Route::post('/random/check', TripController::class);
 
 Route::get('random/{continent:continent}/{country:country}', function (Continent $continent, Country $country) {
     dd($country);

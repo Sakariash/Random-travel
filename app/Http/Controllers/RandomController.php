@@ -6,8 +6,6 @@ use App\Models\Country;
 use App\Models\Continent;
 use Illuminate\Http\Request;
 
-use function GuzzleHttp\Promise\unwrap;
-
 class RandomController extends Controller
 {
     /**
