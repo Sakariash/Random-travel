@@ -36,14 +36,14 @@ class LoginTest extends TestCase
         $response->assertSeeText('Hello, tester. Would you like to logout?');
     }
 
-    // public function test_login_user_without_password()
-    // {
-    //     $response = $this
-    //         ->followingRedirects()
-    //         ->post('login', [
-    //             'email' => 'test@test.com',
-    //         ]);
+    public function test_login_user_without_password()
+    {
+        $response = $this
+            ->followingRedirects()
+            ->post('login', [
+                'email' => 'test@test.com',
+            ]);
 
-    //     $response->assertSeeText('Whoops! Please try to login again.');
-    // }
+        $response->assertSeeText('Whoops! Please try to login again.');
+    }
 }
