@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Continent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use illuminate\Support\Facades\DB;
+
+use function GuzzleHttp\Promise\unwrap;
 
 class RandomController extends Controller
 {
@@ -15,23 +16,18 @@ class RandomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Continent $continent, Request $request)
     {
-        $continent = $request->get('continent');
 
+        $countries = $continent->countries;
 
-        foreach (Continent::all() as $conti) {
-            var_dump($conti['continent']);
-        }
+        $country = $countries->toArray();
 
-        // $getContinent = Continent::where('id', '2')
-        //     ->get();
+        $random = array_rand($country);
 
-        // dd($getContinent);
+        return view('dashboard', [
+            'continent' => $continent,
+            'country' => $countries[$random]['country'],
+        ]);
     }
-
-
-    // foreach (Continent::all() as $continent) {
-    //     echo $continent->name;
-    // }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Continent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +17,12 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = Auth::user();
 
-        $continents = DB::table('continents')->get('continent');
+        // $continents = DB::table('continents')->get('continent');
 
-        return view('dashboard', [
-            'user' => $user,
-            'continents' => $continents,
-        ]);
+        // foreach ($continents as $key => $value) {
+        //     var_dump($value->continent);
+        // }
+        return view('dashboard');
     }
 }
