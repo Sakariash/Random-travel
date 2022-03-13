@@ -17,10 +17,6 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('country_id')->constrained('countries');
-            // $table->unsignedInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->unsignedInteger('country_id');
-            // $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }
