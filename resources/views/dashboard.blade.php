@@ -1,15 +1,5 @@
-@include('error')
+@include('errors')
 
-<!-- <form method="get" action="random">
-    @csrf
-    <label for="name">continent</label>
-    <select name="continent" id="continent" type="text">
-        @foreach($continents as $key => $value)
-        <option value={{$value->id}}>{{$value->continent}}</option>
-        @endforeach
-    </select>
-    <button>selcect</button>
-</form> -->
 @foreach($continents as $key => $value)
 <div>
     <a href="/random/{{$value->continent}}">{{$value->continent}}
@@ -22,12 +12,14 @@
 <!-- {{ method_field('PUT') }} -->
 {{$continent->continent}}--
 <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
-<form action="check" method="post">
+<form action="check/{{$country}}" method="post">
     @csrf
     <input type="checkbox" class='form' value="{{$country}}" name="country" />
 
     <button>send</button>
 </form>
+
+<input type="checkbox" name="country" value="{{$country}}" @checked(old('check')) />
 @endif
 
 <!-- add favourite / travel -->

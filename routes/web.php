@@ -31,7 +31,7 @@ Route::post('login', LoginController::class);
 Route::get('random/{continent:continent}', RandomController::class);
 
 
-Route::post('/random/check', TripController::class);
+Route::post('/random/check/{country:country}', TripController::class);
 
 Route::get('random/{continent:continent}/{country:country}', function (Continent $continent, Country $country) {
     dd($country);
@@ -39,3 +39,5 @@ Route::get('random/{continent:continent}/{country:country}', function (Continent
 
 Route::get('logout', LogoutController::class);
 Route::get('dashboard', DashboardController::class)->middleware('auth');
+
+Route::view('trips', 'trips');
