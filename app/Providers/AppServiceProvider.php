@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Continent;
-use App\Models\Trip;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,10 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $continents = Continent::all();
-        $trips = Trip::all();
+        // $continents = Continent::all();
 
-        view()->share('continents', $continents);
-        view()->share('trips', $trips);
+        // view()->share('continents', $continents);
     }
 }
