@@ -18,19 +18,26 @@ class TripController extends Controller
     {
         // $country =  $request->get('country');
 
+        $trip = $country->country;
+        // dd($trip);
 
-        $trips = $country->country;
-        // dd($trips);
-        $test = Country::where('country', '=', $trips)->get('id');
+        $_SESSION['destination'] = [];
+
+        array_push($_SESSION['destination'], $trip);
+        $test = Country::where('country', '=', $trip)->get('id');
+
+        // dd($_SESSION['destination']);
         foreach ($test as $tes) {
-            dd($tes->id);
-
+            // dd($tes->id);
             Trip::insert(
                 [
                     'user_id' => auth()->user()->id,
                     'country_id' => $tes->id,
                 ]
             );
+            return view('dashboard', [
+                'trip' => $trip
+            ]);
         }
 
 

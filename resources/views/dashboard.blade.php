@@ -1,3 +1,7 @@
+<?php session_start();
+?>
+
+
 @include('errors')
 
 @foreach($continents as $key => $value)
@@ -18,13 +22,15 @@
 
     <button>send</button>
 </form>
-
-<input type="checkbox" name="country" value="{{$country}}" @checked(old('check')) />
 @endif
-
-<!-- add favourite / travel -->
-
 
 <p>
     Hello, {{auth()->user()->name}}.<br><br> Would you like to <a href="/logout">logout?</a>
 </p>
+@if(isset($trip))
+<?php
+array_push($_SESSION['destination'], $trip); ?>
+@foreach($_SESSION['destination'] as $travel)
+{{ $travel }}
+@endforeach
+@endif
