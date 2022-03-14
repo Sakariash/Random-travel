@@ -33,6 +33,10 @@ Route::get('random/{continent:continent}', RandomController::class)->name('rando
 
 
 Route::post('/random/check/{country:country}', TripController::class);
+check/{{$search}}
+
+Route::post('/random/check/{country:country}', TripController::class);
+
 
 Route::get('random/{continent:continent}/{country:country}', function (Continent $continent, Country $country) {
     dd($country);
@@ -43,3 +47,4 @@ Route::get('dashboard', DashboardController::class)->name('dashboard')->middlewa
 
 Route::view('trips', 'trips');
 Route::get('/search', SearchController::class);
+
