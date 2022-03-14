@@ -18,9 +18,9 @@ class SearchController extends Controller
     {
         $search = $request->get('search');
 
+        $get_country = Country::where('country', 'LIKE', '%' . $search . '%')->get();
 
-        $search_country = Country::where('country', 'LIKE', '%' . $search . '%')->get();
-        $search = $search_country->toArray();
+        // $search = $get_country->toArray();
 
         return view('dashboard', [
             'search' => $search,
