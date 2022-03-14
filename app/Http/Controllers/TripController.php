@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\Continent;
 use App\Models\Trip;
 
 class TripController extends Controller
@@ -26,6 +27,17 @@ class TripController extends Controller
         array_push($_SESSION['destination'], $trip);
         $test = Country::where('country', '=', $trip)->get('id');
 
+        $id = auth()->user()->id;
+        $destination = [];
+        $country_id = Trip::distinct('user_id', '=', $id)->get();
+
+        foreach ($country_id as $uniqe_id) {
+            array_push($destination, $uniqe_id->country_id);
+        }
+
+        $favourites = Country::where('id', '=', $destination)->get();
+        // dd($favourites);
+
         // dd($_SESSION['destination']);
         foreach ($test as $tes) {
             // dd($tes->id);
@@ -35,8 +47,11 @@ class TripController extends Controller
                     'country_id' => $tes->id,
                 ]
             );
+
             return view('dashboard', [
-                'trip' => $trip
+                'trip' => $trip,
+                'destination' => $destination,
+                'continents' => Continent::with('countries')->get()
             ]);
         }
 
