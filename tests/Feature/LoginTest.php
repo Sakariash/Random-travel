@@ -33,7 +33,7 @@ class LoginTest extends TestCase
                 'email' => 'test@test.com',
                 'password' => '123',
             ]);
-        $response->assertSeeText('Hello, tester. Would you like to logout?');
+        $response->assertSeeText('Would you like to logout?');
     }
 
     public function test_login_user_without_password()

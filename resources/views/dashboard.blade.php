@@ -1,58 +1,66 @@
 @include('header')
 @include('errors')
+<div class="content-container">
+    <div class="header">
+        <h1>Where do you want to travel next?</h1>
+        <p>Search for a country or press a continent to get a suggestion</p>
+    </div>
+    <div class="content">
 
-<form action="/search" method="GET">
-    <input type="search" name="search" placeholder="Search...">
-    <button>Search</button>
-</form>
-@foreach($continents as $key => $value)
+        <form action="/search" method="GET">
+            <input type="search" name="search" placeholder="Search...">
+            <button>Search</button>
+        </form>
+        @foreach($continents as $key => $value)
 
 
-<div>
-    <a href="/random/{{$value->continent}}">{{$value->continent}}
-</div></a>
-@endforeach
+        <div>
+            <a href="/random/{{$value->continent}}">{{$value->continent}}
+        </div></a>
+        @endforeach
 
-<br>
+        <br>
 
-<!--Get search result-->
-@if(isset($search))
+        <!--Get search result-->
+        @if(isset($search))
 
-{{$search}}
-<form action="check/{{$search}}" method="post">
-    @csrf
-    <input type="checkbox" class='form' value="{{$search}}" name="country" />
+        {{$search}}
+        <form action="check/{{$search}}" method="post">
+            @csrf
+            <input type="checkbox" class='form' value="{{$search}}" name="country" />
 
-    <button>send</button>
-</form>
-@endif
-@if(isset($country))
-<!-- {{ method_field('PUT') }} -->
-{{$continent->continent}}--
+            <button>send</button>
+        </form>
+        @endif
+        @if(isset($country))
+        <!-- {{ method_field('PUT') }} -->
+        {{$continent->continent}}--
 
-<a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
+        <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
 
-<a href="{{ route('random.country', $continent) }}">{{$country}}</a>'
-<form action="check/{{$country}}" method="post">
-    @csrf
-    <input type="checkbox" class='form' value="{{$country}}" name="country" />
+        <a href="{{ route('random.country', $continent) }}">{{$country}}</a>'
+        <form action="check/{{$country}}" method="post">
+            @csrf
+            <input type="checkbox" class='form' value="{{$country}}" name="country" />
 
-    <button>send</button>
-</form>
-@endif
+            <button>send</button>
+        </form>
+        @endif
 
-<p>
-    Hello, {{auth()->user()->name}}.<br><br> Would you like to <a href="/logout">logout?</a>
-</p>
-@if(isset($trip))
+        <p>
+            <!--  Hello, {{auth()->user()->name}}.<br><br> --> Would you like to <a href="/logout">logout?</a>
+        </p>
+        @if(isset($trip))
 
-<br><br><br><br>
+        <br><br><br><br>
 
-@foreach($list as $country_visited)
-<div>
+        @foreach($list as $country_visited)
+        <div>
 
-    {{ $country_visited}}
+            {{ $country_visited}}
+        </div>
+
+        @endforeach
+        @endif
+    </div>
 </div>
-
-@endforeach
-@endif

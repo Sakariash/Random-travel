@@ -31,14 +31,10 @@ Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
 Route::get('random/{continent:continent}', RandomController::class)->name('random.country');
 Route::post('/random/check/{country:country}', TripController::class);
-<<<<<<< Updated upstream
-check/{{$search}}
 
 Route::post('/random/check/{country:country}', TripController::class);
 
 
-=======
->>>>>>> Stashed changes
 Route::get('random/{continent:continent}/{country:country}', function (Continent $continent, Country $country) {
     dd($country);
 });
@@ -46,4 +42,3 @@ Route::get('logout', LogoutController::class);
 Route::get('dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 Route::view('trips', 'trips');
 Route::get('/search', SearchController::class);
-

@@ -3,4 +3,50 @@ body {
     background-size: 100vw 50vw;
     display: flex;
     justify-content: center;
+    color: #183027;
+    font-size: 18px;
+    font-family: "Antic";
+}
+
+.container {
+    background-image: url("/images/background.webp");
+    background-size: 100vw 50vw;
+    display: flex;
+    justify-content: center;
+    color: #183027;
+    font-family: "Antic";
+}
+
+.form {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    flex-direction: column;
+    margin-top: 15%;
+}
+.form input {
+    margin: 0.5rem 0rem;
+}
+
+button {
+    font-family: "Antic";
+    background-color: white;
+    color: #183027;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.content {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 50%;
+}
+
+.content-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
