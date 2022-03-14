@@ -1,21 +1,37 @@
-<?php session_start();
-?>
-
-
+@include('header')
 @include('errors')
 
+<form action="/search" method="GET">
+    <input type="search" name="search" placeholder="Search...">
+    <button>Search</button>
+</form>
 @foreach($continents as $key => $value)
+
+
 <div>
     <a href="/random/{{$value->continent}}">{{$value->continent}}
 </div></a>
 @endforeach
 
 <br>
-@if(isset($country))
 
+<!--Get search result-->
+@if(isset($search))
+{{$search[0]['country']}}
+<form action="check/{{$search[0]['country']}}" method="post">
+    @csrf
+    <input type="checkbox" class='form' value="{{$search[0]['country']}}" name="country" />
+
+    <button>send</button>
+</form>
+@endif
+@if(isset($country))
 <!-- {{ method_field('PUT') }} -->
 {{$continent->continent}}--
+
 <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
+
+<a href="{{ route('random.country', $continent) }}">{{$country}}</a>'
 <form action="check/{{$country}}" method="post">
     @csrf
     <input type="checkbox" class='form' value="{{$country}}" name="country" />
@@ -28,9 +44,11 @@
     Hello, {{auth()->user()->name}}.<br><br> Would you like to <a href="/logout">logout?</a>
 </p>
 @if(isset($trip))
-<?php
-array_push($_SESSION['destination'], $trip); ?>
-@foreach($_SESSION['destination'] as $travel)
-{{ $travel }}
+
+<br><br><br><br>
+
+@foreach($destination as $location_id)
+{{ $location_id }}
+
 @endforeach
 @endif
