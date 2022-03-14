@@ -26,6 +26,7 @@ class RandomController extends Controller
         return view('dashboard', [
             'continent' => $continent,
             'country' => $countries[$random]['country'],
+            'continents' => Continent::with('countries')->get()
         ]);
     }
 }
