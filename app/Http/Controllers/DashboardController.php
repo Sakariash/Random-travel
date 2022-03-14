@@ -17,11 +17,11 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $continents = DB::table('continents')->get('continent');
+        $continents = Continent::with('countries')->get();
+        // dd($continents);
 
-        // foreach ($continents as $key => $value) {
-        //     var_dump($value->continent);
-        // }
-        return view('dashboard');
+        return view('dashboard', [
+            'continents' => $continents
+        ]);
     }
 }
