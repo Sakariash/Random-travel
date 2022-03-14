@@ -6,15 +6,15 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class LogoutTest extends TestCase
+class RandomTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_logout()
+    public function test_get_random_country()
     {
 
         $user = new User();
@@ -30,10 +30,11 @@ class LogoutTest extends TestCase
                 'password' => '123',
             ]);
 
-
-        $response = Auth::logout();
-        $response = $this->get('/');
-        $response->assertSeeText('Not a member? Sign up');
+        $response = $this
+            ->actingAs($user)
+            ->get('random.country',  [
+                'countries' => 'Ukraine'
+            ]);
         $response->assertStatus(200);
     }
 }
