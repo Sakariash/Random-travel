@@ -17,10 +17,11 @@
 
 <!--Get search result-->
 @if(isset($search))
-{{$search[0]['country']}}
-<form action="check/{{$search[0]['country']}}" method="post">
+
+{{$search}}
+<form action="check/{{$search}}" method="post">
     @csrf
-    <input type="checkbox" class='form' value="{{$search[0]['country']}}" name="country" />
+    <input type="checkbox" class='form' value="{{$search}}" name="country" />
 
     <button>send</button>
 </form>
@@ -47,8 +48,11 @@
 
 <br><br><br><br>
 
-@foreach($destination as $location_id)
-{{ $location_id }}
+@foreach($list as $country_visited)
+<div>
+
+    {{ $country_visited}}
+</div>
 
 @endforeach
 @endif
