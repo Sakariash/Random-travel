@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
-use App\Models\Continent;
 use App\Models\Trip;
 
-class TripController extends Controller
+class DeleteTripController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,9 +16,9 @@ class TripController extends Controller
      */
     public function __invoke(Country $country, Request $request)
     {
-        $trip = $country->country;
+        $country_id = $country->id;
 
-        $selected_country_id = Country::where('country', '=', $trip)->get('id');
+        Trip::where('country_id', $country_id)->delete();
 
         $id = auth()->user()->id;
         $traveled_places_id = [];
@@ -37,19 +36,8 @@ class TripController extends Controller
             }
         }
 
-        foreach ($selected_country_id as $country) {
-            Trip::insert(
-                [
-                    'user_id' => auth()->user()->id,
-                    'country_id' => $country->id,
-                ]
-            );
-            return view('trips', [
-                'trip' => $trip,
-                'traveled_places_id$traveled_places_id' => $traveled_places_id,
-                'list' => $list,
-
-            ]);
-        };
+        return view('trips', [
+            'list' => $list,
+        ]);
     }
 }

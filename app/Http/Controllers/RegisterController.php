@@ -18,9 +18,7 @@ class RegisterController extends Controller
 
     public function __invoke(Request $request)
     {
-
         $user = User::create(['name' => $request['name'], 'email' => $request['email'], 'password' => hash::make($request['password'])]);
-        // auth()->login($user);
         return redirect('/')->with('Your account was successfully registered');
     }
 }
