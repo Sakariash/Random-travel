@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Trip;
 use App\Models\Continent;
 use App\Models\Country;
 use App\Models\User;
@@ -19,7 +20,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $continents = [
             new Continent(['continent' => 'Asia']),
             new Continent(['continent' => 'Africa']),
@@ -163,7 +163,10 @@ class DatabaseSeeder extends Seeder
         foreach ($countries as $country) {
             $country->save();
         }
+
+        $user = new User(['name' => 'Jennifer', 'email' => 'jenn@jenn.se', 'password' => Hash::make('123')]);
+        $user->save();
+
+        Trip::factory(4)->create();
     }
 }
-$user = new User(['name' => 'Jennifer', 'email' => 'jenn@jenn.se', 'password' => Hash::make('123')]);
-$user->save();

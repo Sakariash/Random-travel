@@ -12,12 +12,6 @@ class Trip extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'country_id'
+        'continent',
     ];
-
-    public function trips()
-    {
-        return $this->hasMany(Country::class, User::class);
-    }
 }
