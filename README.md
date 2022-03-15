@@ -1,64 +1,45 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Random travel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Code review
 
-## About Laravel
+Code review by [Emma Hansson](https://github.com/h-emma) and [Marcus Hägerstrand](https://github.com/marcusxyz).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. `app/Models/User.php` - This file seem to have generated comments, maybe you could remove them to make the file compact incase it grows larger?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. `app/Http/Controllers/DashboardController.php 21` - Make sure to remove comments before publishing your app.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Add .DS_Store to .gitignore
 
-## Learning Laravel
+4. `Tests/Feature/` - Remove ExempelTest.php if it's not in use.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. `routes/web.php` - For better readability you could organize the routes, perhaps catergorise them?
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+6. `Resources/view/dashboard.blade.php: 10-13` - @CSRF seems to be missing, make sure to add for improved security. Also a `label` tag is missing, add this to improve accessability.
 
-## Laravel Sponsors
+7. ` Resources/view/dashboard.blade.php : 36` - `{{ method_field('PUT')}}` is the old way of writing @method('PUT') and there seems to be no 'PUT' in `web.php`. Maybe delete this comment if it's not in use.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+8. `Resources/view/dashboard.blade.php : 55` - `<br>` tags is not semantic, perhaps use other methods? Style with CSS?
 
-### Premium Partners
+9. `Resources/view/header.blade.php: 8` - Add a title for your project in the head tag, to make it more personal.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+10. `resources/views/dashboard.blade.php: 14` - $key seems misleading, maybe write something like foreach $continents as $counties => $country
 
-## Contributing
+11. `Database/migration/2022_03_08_100212_create_countries.php: 20-21` - Make sure to remove comments if it's not in use.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+12. `Database/seeders/DatabaseSeeder.php` - Very good use of Database seeder. It was very smooth to setup.
 
-## Code of Conduct
+13. `app/Http/Controllers/RegisterController.php: 24` - Register confirmation doesn't show up. One way to solve this is to add a sucess.blade just like errors.blade and include it in index.blade.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+14. Background image on body makes it hard to read the content sometimes.
 
-## Security Vulnerabilities
+15. `resources/views/dashboard.blade.php: 51` Why is this commented? This works fine and it's nice to have
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+16. `resources/views/dashboard.blade.php: 54` - Add more info after user checks off a trip, so the user atleast gets a feedback on what he/she has done.
 
-## License
+17. `resources/views/dashboard.blade.php: 46` - It's hard to understand what the checkbox and send button does, you could clarify this with a helper text.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+18. `resources/views/dashboard.blade.php` - Form is missing labels, make sure to have this for better accessability and to ensure that the component's purpose is clear.
+
+19. `Login- and RegisterControllers.php` Make sure to add backend validations, remember that you should never trust the user as Vincent always say. For example users can send in invalid emails like johnsmith@yrgo instead of johnsmith@yrgo.se also there is no password validations.
+
+20. Very impressed with the URL-structure, great work!! ⭐️
