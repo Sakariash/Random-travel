@@ -17,52 +17,53 @@ class TripController extends Controller
      */
     public function __invoke(Country $country, Request $request)
     {
+
+
         // $country =  $request->get('country');
 
         $trip = $country->country;
-        // dd($trip);
 
-        $_SESSION['destination'] = [];
 
-        array_push($_SESSION['destination'], $trip);
-        $test = Country::where('country', '=', $trip)->get('id');
+        // $_SESSION['traveled_places_id$traveled_places_id'] = [];
+
+        // array_push($_SESSION['traveled_places_id$traveled_places_id'], $trip);
+
+        $selected_country_id = Country::where('country', '=', $trip)->get('id');
 
         $id = auth()->user()->id;
-        $destination = [];
+        $traveled_places_id = [];
         $country_id = Trip::distinct('user_id', '=', $id)->get();
 
         foreach ($country_id as $uniqe_id) {
-            array_push($destination, $uniqe_id->country_id);
+            array_push($traveled_places_id, $uniqe_id->country_id);
         }
 
-        $favourites = Country::where('id', '=', $destination)->get();
-        // dd($favourites);
 
-        // dd($_SESSION['destination']);
-        foreach ($test as $tes) {
-            // dd($tes->id);
+        $list = [];
+        foreach ($traveled_places_id as $travaled_places) {
+            $travaled_places_name = Country::where('id', '=', $travaled_places)->get();
+            foreach ($travaled_places_name as $key => $value) {
+                array_push($list, $value->country);
+            }
+        }
+
+        foreach ($selected_country_id as $country) {
+            // var_dump($country->id);
             Trip::insert(
                 [
                     'user_id' => auth()->user()->id,
-                    'country_id' => $tes->id,
+                    'country_id' => $country->id,
                 ]
             );
-
+            //move list to dashboard controller
             return view('dashboard', [
                 'trip' => $trip,
-                'destination' => $destination,
-                'continents' => Continent::with('countries')->get()
+                'traveled_places_id$traveled_places_id' => $traveled_places_id,
+                'list' => $list,
+                'continents' => Continent::with('countries')->get(),
             ]);
         }
 
-
-
-
-
-
-        //Get country id -> insert country id and user id in trips
-
-        //foreach country id where user id = ?? ->get
         return view('trips');
     }
 }
