@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RandomController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DeleteTripController;
 use App\Models\Continent;
 use App\Models\Country;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::get('random/{continent:continent}', RandomController::class)->name('rando
 Route::post('/random/check/{country:country}', TripController::class);
 
 Route::get('/random/check/{country:country}', TripController::class);
+
+Route::get('/delete/{country:country}', DeleteTripController::class);
 
 
 
