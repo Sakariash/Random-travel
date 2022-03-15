@@ -1,6 +1,6 @@
 body {
     background-image: url("/images/background.webp");
-    background-size: 100vw 50vw;
+    background-size: 100vw;
     display: flex;
     justify-content: center;
     color: #183027;
@@ -10,10 +10,11 @@ body {
 
 .container {
     background-image: url("/images/background.webp");
-    background-size: 100vw 50vw;
+    background-size: 100vw;
     display: flex;
     justify-content: center;
     color: #183027;
+    font-size: 18px;
     font-family: "Antic";
 }
 
@@ -49,4 +50,63 @@ button {
     justify-content: center;
     display: flex;
     flex-direction: column;
+    line-height: 30px;
+}
+
+.login {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    height: 15%;
+    flex-direction: column;
+    margin-top: 25%;
+}
+
+.back {
+    display: flex;
+    margin-right: auto;
+}
+
+.trips {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    height: 15%;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+button .add {
+    margin-top: 20%;
+}
+
+.logout {
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 970px) {
+    body {
+        background-image: unset;
+        background-color: rgb(165, 192, 201);
+    }
+
+    .container {
+        background-image: unset;
+        background-color: rgb(165, 192, 201);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .trips {
+        margin-top: 20%;
+        margin-left: 50%;
+    }
+
+    .login {
+        margin-top: 30%;
+    }
+
+    .form {
+        margin-top: 30%;
+    }
 }

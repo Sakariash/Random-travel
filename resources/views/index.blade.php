@@ -1,7 +1,6 @@
 @include('header')
 @if ($errors->any())
 
-
 <p>
     <u>{{ $errors->first() }}</u>
 </p>
@@ -19,6 +18,7 @@
 
             <button type="submit">Login</button>
         </form>
+
         <p>
             Not a member? <a href="register">Sign up</a>
         </p>
