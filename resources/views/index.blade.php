@@ -1,13 +1,13 @@
 @include('header')
 @if ($errors->any())
 
+
+<p>
+    <u>{{ $errors->first() }}</u>
+</p>
+@endif
 <div class="container">
     <div class="login">
-        <p>
-            <u>{{ $errors->first() }}</u>
-        </p>
-        @endif
-
         <form method="post" action="login">
             @csrf
 

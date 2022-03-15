@@ -12,6 +12,7 @@ class Trip extends Model
     use HasFactory;
 
     protected $fillable = [
-        'continent',
+        'user_id',
+        'country_id'
     ];
 }
