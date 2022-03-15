@@ -37,6 +37,6 @@ class RandomTest extends TestCase
             ->actingAs($user)
             ->get("random/{$continent->continent}");
 
-        $response->assertOk();
+        $response->assertSuccessful();
     }
 }
