@@ -38,7 +38,6 @@ class DeleteTripController extends Controller
 
         return view('trips', [
             'list' => $list,
-
         ]);
     }
 }

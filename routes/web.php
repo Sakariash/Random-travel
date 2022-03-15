@@ -26,26 +26,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 // });
 Route::view('/', 'index')->name('login')->middleware('guest');
-// Route::get('register', RegisterController::class);
 Route::view('register', 'register');
 Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
-
-Route::get('random/{continent:continent}', RandomController::class)->name('random.country');
-
-Route::post('/random/check/{country:country}', TripController::class);
-
-Route::get('/random/check/{country:country}', TripController::class);
-
-Route::get('/delete/{country:country}', DeleteTripController::class);
-
-
-
-// Route::get('random/{continent:continent}/{country:country}', function (Continent $continent, Country $country) {
-//     dd($country);
-// });
 Route::get('logout', LogoutController::class);
+Route::get('random/{continent:continent}', RandomController::class)->name('random.country');
+Route::post('/random/check/{country:country}', TripController::class);
+Route::get('/random/check/{country:country}', TripController::class);
 Route::get('dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 Route::view('trips', 'trips');
-
 Route::get('/search', SearchController::class);
+Route::get('/delete/{country:country}', DeleteTripController::class);
+Route::get('/delete/{country:country}', DeleteTripController::class);
