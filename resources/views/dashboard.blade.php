@@ -24,10 +24,11 @@
         <!--Get search result-->
         @if(isset($search))
 
-        {{$search}}
-        <form action="check/{{$search}}" method="post">
+
+
+        <form action="/random/check/{{$search[0]['country']}}" method="post">
             @csrf
-            <input type="checkbox" class='form' value="{{$search}}" name="country" />
+            <input type="checkbox" class='form' value="{{$search[0]['country']}}" name="country" />
 
             <button>send</button>
         </form>
