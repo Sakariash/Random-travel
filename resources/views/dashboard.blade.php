@@ -8,15 +8,16 @@
     <div class="content">
 
         <form action="/search" method="GET">
-            <input type="search" name="search" placeholder="Search...">
-            <button>Search</button>
+            <input type="search" name="search" placeholder="Select...">
+            <button>Add to list</button>
         </form>
         @foreach($continents as $key => $value)
 
 
         <div>
             <a href="/random/{{$value->continent}}">{{$value->continent}}
-        </div></a>
+            </a>
+        </div>
         @endforeach
 
         <br>
@@ -35,17 +36,17 @@
         @endif
         @if(isset($country))
         <!-- {{ method_field('PUT') }} -->
-        {{$continent->continent}}--
+        {{$continent->continent}} --
 
-        <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a>
+        <!-- <a href="/random/{{$continent->continent}}/{{$country}}">{{$country}}</a> -->
 
-        <a href="{{ route('random.country', $continent) }}">{{$country}}</a>'
-        <form action="check/{{$country}}" method="post">
-            @csrf
-            <input type="checkbox" class='form' value="{{$country}}" name="country" />
+        <!-- <a href="{{ route('random.country', $continent) }}">{{$country}}</a>' -->
+        <a href="check/{{$country}}">{{$country}}</a>
+        <!-- @csrf -->
+        <!-- <input type="checkbox" class='form' value="{{$country}}" name="country" />
 
-            <button>send</button>
-        </form>
+        <button>send</button>
+        </form> -->
         @endif
 
         <p>
