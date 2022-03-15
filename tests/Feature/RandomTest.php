@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RandomTest extends TestCase
@@ -16,7 +13,6 @@ class RandomTest extends TestCase
 
     public function test_get_random_country()
     {
-
         $user = new User();
         $user->name = 'Jennifer';
         $user->email = 'jenn@jenn.se';
@@ -32,9 +28,9 @@ class RandomTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get('random.country',  [
-                'countries' => 'Ukraine'
+            ->get('random/{continent:continent}', [
+                'name' => 'random.country',
             ]);
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 }
