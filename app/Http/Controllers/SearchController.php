@@ -16,15 +16,13 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
+
         $search = $request->get('search');
 
-        $get_country = Country::where('country', 'LIKE', '%' . $search . '%')->get();
+        $get_country = Country::where('country', 'LIKE', '%' . $search . '%')->first();
 
-        // $search = $get_country->toArray();
+        $search = $get_country->toArray();
 
-        return view('dashboard', [
-            'search' => $search,
-            'continents' => Continent::with('countries')->get()
-        ]);
+        return redirect("/random/check/$get_country->country");
     }
 }

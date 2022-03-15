@@ -15,9 +15,4 @@ class Trip extends Model
         'user_id',
         'country_id'
     ];
-
-    public function trips()
-    {
-        return $this->hasMany(Country::class, User::class);
-    }
 }
