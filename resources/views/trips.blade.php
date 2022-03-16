@@ -10,7 +10,7 @@
     <div>
         {{ $country_visited }}
         <div>
-            <a href="/delete/{{$country_visited}}"> delete</a>
+            <a class="delete" href="/delete/{{$country_visited}}"> delete</a>
         </div>
 
         @endforeach
