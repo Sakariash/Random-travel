@@ -4,7 +4,7 @@
     <div class="header">
         Hello, {{auth()->user()->name}}
         <h1>Where do you want to travel next?</h1>
-        <p>Search for a country or press a continent to get a suggestion</p>
+        <p>Search for a country or press a continent to get a suggestion.<br> If you like the suggested country, press it and it will be added to your wishlist!</p>
     </div>
     <div class="content">
         <form action="/search" method="GET">
@@ -30,7 +30,7 @@
     @endif
     @if(isset($country))
     {{$continent->continent}} --
-    <a href="check/{{$country}}">{{$country}}</a>
+    <a class="suggestion" href="check/{{$country}}">{{$country}}</a>
     @endif
 
     <p class="logout">

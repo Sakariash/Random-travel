@@ -80,6 +80,12 @@ button .add {
     margin-top: 20%;
 }
 
+.suggestion {
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
 .logout {
     font-weight: 600;
 }
