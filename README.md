@@ -1,6 +1,6 @@
 # Random travel
-<img src="https://...thumbs-up.gif">
-<img src="https://media.giphy.com/media/IvDNMYRwQQiIM/giphy.gif" width: 100/>
+
+<img src="https://media.giphy.com/media/IvDNMYRwQQiIM/giphy.gif">
 
 ## Random-travel
 
